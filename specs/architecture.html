@@ -51,7 +51,7 @@
 <div class="sheet">
   <p class="eyebrow">LOLA · Product Overview · Spec 02</p>
   <h1>How LOLA works</h1>
-  <p class="lede">LOLA is an AI routing agent for creative and marketing teams. She reads each incoming request and matches it against <strong>your team's own routing rules</strong>. When a rule fits, she assigns the work herself. <strong>Every call she makes can be undone in one click.</strong></p>
+  <p class="lede">LOLA is an AI routing agent for creative and marketing teams. She reads each request on the team's Asana board and matches it against <strong>your team's own routing rules</strong>. She shipped proposing every call, and now assigns the work herself in live mode. <strong>A human can review or override any call.</strong></p>
 
   <section>
     <h2>Request lifecycle</h2>
@@ -60,33 +60,33 @@
       <div class="stage">
         <div class="rail"><div class="node ghost">1</div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">A request comes in</p>
-          <p class="stage-copy">Anyone on the team submits a structured work request form inside the project management tool. No new software to learn, the intake lives where the work already lives.</p>
+          <p class="stage-title">A request lands on the board</p>
+          <p class="stage-copy">Anyone adds a task to the team's Asana board. A webhook wakes LOLA. She verifies the signature before she trusts the event, then reads the task. An unverified caller is rejected with a 401.</p>
         </div>
       </div>
 
       <div class="stage">
         <div class="rail"><div class="node warm">2</div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">LOLA reads and reasons</p>
-          <p class="stage-copy">The request hits a webhook. LOLA sends the form contents to Claude via the Anthropic API alongside the team's routing rulebook, a plain-language document the team owns and can edit. She identifies the request type, the right owner, and the deadline risk.</p>
+          <p class="stage-title">She routes it</p>
+          <p class="stage-copy">If the Deliverable Type dropdown is set, LOLA looks the owner up in a fixed table, deterministic and free. If it is blank, Claude Sonnet reads the free text and infers the owner. She posts her reasoning as a comment and cites the rule, e.g. <code>matched: rule 2.1 (event collateral → design queue)</code>.</p>
+          <p class="fork">state → ROUTED (warm chip)</p>
         </div>
       </div>
 
       <div class="stage">
         <div class="rail"><div class="node warm">3</div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">She routes, and shows her work</p>
-          <p class="stage-copy">LOLA assigns the task and posts her reasoning as a comment: owner, project, priority, and the specific rule she used to get there, e.g. <code>matched: rule 2.1 (event collateral → design queue)</code>. Every call is auditable because every call cites its source.</p>
-          <p class="fork">state → ROUTED (warm chip)</p>
+          <p class="stage-title">She checks the brief</p>
+          <p class="stage-copy">Claude Opus reads each owner-routed request and flags a brief too thin to start on. When a Google Drive account is connected, LOLA checks that linked files open and asks the requester to share the ones that do not.</p>
         </div>
       </div>
 
       <div class="stage">
         <div class="rail"><div class="node cream" style="font-size:13px">?</div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">No matching rule? She stops.</p>
-          <p class="stage-copy">If a request doesn't map cleanly to the rulebook, she flags it for the triage owner with a note about what was missing. Guessing is not in her permission set.</p>
+          <p class="stage-title">Unclear? She hands it up.</p>
+          <p class="stage-copy">A multi-format campaign or an unclear request goes to the triage owner and moves to Pending Info. A flagged sender is escalated the same way. LOLA notes what was missing. Guessing is not in her permission set.</p>
           <p class="fork" style="color:var(--cream)">state → NEEDS HUMAN (cream chip)</p>
         </div>
       </div>
@@ -94,8 +94,8 @@
       <div class="stage">
         <div class="rail"><div class="node cool">4</div></div>
         <div class="stage-body">
-          <p class="stage-title">A human can undo any call.</p>
-          <p class="stage-copy">Work moves the moment she routes it. The triage owner can reverse or edit any call in one click. Once a person reviews the call and keeps it, the chip turns cool.</p>
+          <p class="stage-title">She acts, gated</p>
+          <p class="stage-copy">In safety mode LOLA comments her call and tags the triage owner, writing nothing to the board. In live mode she assigns the owner, sets the due date from the form, and moves the card to Assigned. Live mode needs two separate switches, so a single deploy can never start her writing by accident. Once a person reviews a call and keeps it, the chip turns cool.</p>
           <p class="fork" style="color:var(--cool-a)">state → CONFIRMED (cool chip)</p>
         </div>
       </div>
@@ -109,12 +109,12 @@
       <div class="stack-card">
         <p class="stack-label">Intelligence</p>
         <p class="stack-name">Anthropic API</p>
-        <p class="stack-note">Claude handles classification and routing logic against the team rulebook.</p>
+        <p class="stack-note">Claude Sonnet routes when the dropdown is blank. Claude Opus checks each brief for completeness.</p>
       </div>
       <div class="stack-card">
         <p class="stack-label">Runtime</p>
         <p class="stack-name">Node.js</p>
-        <p class="stack-note">Lightweight service receiving webhooks and orchestrating the round trip.</p>
+        <p class="stack-note">One serverless function verifies the webhook, orchestrates the round trip, and comments back.</p>
       </div>
       <div class="stack-card">
         <p class="stack-label">Hosting</p>
@@ -124,7 +124,12 @@
       <div class="stack-card">
         <p class="stack-label">Workspace</p>
         <p class="stack-name">Asana, today</p>
-        <p class="stack-note">First integration. The routing engine is tool-agnostic by design.</p>
+        <p class="stack-note">First integration. The routing table is tool-agnostic by design.</p>
+      </div>
+      <div class="stack-card">
+        <p class="stack-label">Files</p>
+        <p class="stack-name">Google Drive</p>
+        <p class="stack-note">A service account checks that linked files open before work starts. Optional, added in Phase 2.</p>
       </div>
     </div>
   </section>
@@ -133,8 +138,8 @@
     <h2>Design principles</h2>
     <div class="principles">
       <div class="principle">
-        <h3>Autonomous with an undo</h3>
-        <p>LOLA routes without waiting for permission. Nothing she does is final. The triage owner can take back any call in one click.</p>
+        <h3>Gated before autonomous</h3>
+        <p>LOLA shipped proposing every call and writing nothing. Live mode takes two separate switches and a week of proof. A kill switch stops her in one step.</p>
       </div>
       <div class="principle">
         <h3>The rulebook belongs to the team</h3>
@@ -151,7 +156,7 @@
     </div>
   </section>
 
-  <p class="footer">LOLA V1 · BUILT AND PROVEN IN PRODUCTION ON A GLOBAL NONPROFIT'S MARKETING TEAM · ANTHROPIC API / NODE.JS / VERCEL</p>
+  <p class="footer">LOLA V1 · BUILT AND PROVEN IN PRODUCTION ON A GLOBAL NONPROFIT'S MARKETING TEAM · ASANA / VERCEL / ANTHROPIC API / GOOGLE DRIVE / NODE.JS</p>
 
   <nav class="site-nav" aria-label="Site pages">
     <a href="../index.html">Case study</a><span class="sep">·</span><a href="chips.html">Status chips</a><span class="sep">·</span><a href="architecture.html">Architecture</a>

@@ -1,0 +1,96 @@
+/* Styles shared by every LOLA page. Page files hold only what differs. */
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--field);color:#fff;}
+
+/* ---- status chips ---- */
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:999px;
+  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;
+}
+.chip .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--navy);}
+.chip-proposal{background:linear-gradient(135deg,var(--warm-a),var(--warm-b) 55%,var(--warm-c));color:var(--navy);}
+.chip-proposal .dot{animation:pulse 2.2s ease-in-out infinite;}
+.chip-routed{background:linear-gradient(135deg,var(--cool-a),var(--cool-b));color:var(--navy);}
+.chip-human{background:var(--cream);color:var(--navy);}
+.chip.sm{padding:5px 12px;font-size:12px;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+@media (prefers-reduced-motion:reduce){.chip-proposal .dot{animation:none;}}
+
+/* ---- request queue rows ---- */
+.queue-head,.task-head{
+  display:flex;align-items:center;gap:10px;padding:14px 20px;
+  border-bottom:1px solid #ECEEF3;
+  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13px;color:#5a5f6b;
+}
+.avatar{
+  width:26px;height:26px;border-radius:8px;flex:none;position:relative;
+  background:linear-gradient(150deg,var(--cool-a),var(--cool-b));
+}
+.avatar::before,.avatar::after{content:"";position:absolute;width:3px;height:7px;border-radius:2px;background:var(--navy);top:8px;}
+.avatar::before{left:8px;}
+.avatar::after{right:8px;}
+.task{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid #F1F2F6;}
+.task:last-child{border-bottom:none;}
+.task-title{flex:1;font-size:14px;font-weight:500;}
+.task-meta{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8a8f9c;}
+
+/* ---- lifecycle flow ---- */
+.stage{display:flex;gap:20px;align-items:flex-start;}
+.rail{display:flex;flex-direction:column;align-items:center;flex:none;width:44px;}
+.node{
+  width:44px;height:44px;border-radius:14px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--navy);
+}
+.node.warm{background:linear-gradient(135deg,var(--warm-a),var(--warm-b) 60%,var(--warm-c));}
+.node.cool{background:linear-gradient(135deg,var(--cool-a),var(--cool-b));}
+.node.cream{background:var(--cream);}
+.node.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);}
+.line{width:2px;flex:1;background:rgba(255,255,255,.25);margin:6px 0;}
+.stage-body{padding-top:4px;}
+.stage-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:16px;margin-bottom:5px;}
+.stage-copy{font-size:13.5px;color:rgba(255,255,255,.75);max-width:52ch;}
+.stage-copy code{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  background:rgba(255,255,255,.1);border-radius:5px;padding:2px 6px;color:var(--cool-a);
+}
+
+/* ---- spec sheet scaffolding ---- */
+.sheet{max-width:880px;margin:0 auto;}
+.sheet .eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cool-a);opacity:.85;margin-bottom:14px;
+}
+.sheet h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.05;
+  margin-bottom:10px;
+}
+.sheet .lede{font-size:15px;line-height:1.6;color:rgba(255,255,255,.82);margin-bottom:56px;}
+.sheet .lede strong{color:#fff;font-weight:500;}
+.sheet section{margin-bottom:56px;}
+.sheet h2{
+  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--warm-a);
+  border-bottom:1px solid rgba(255,255,255,.18);
+  padding-bottom:10px;
+}
+.sheet .footer{
+  margin-top:64px;font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,.45);letter-spacing:.08em;
+}
+
+/* ---- site footer nav ---- */
+.site-foot{padding:0 24px 64px;}
+.site-nav{
+  max-width:880px;margin:0 auto;padding:48px 0 0;
+  border-top:1px solid rgba(255,255,255,.18);
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.site-nav a{color:var(--cool-a);text-decoration:none;}
+.site-nav a:hover,.site-nav a:focus-visible{text-decoration:underline;}
+.site-nav .sep{color:rgba(255,255,255,.4);margin:0 10px;}

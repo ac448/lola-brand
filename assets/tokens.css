@@ -1,0 +1,15 @@
+/* LOLA design tokens. Single source of truth.
+   Warm gradients mean LOLA proposed something.
+   Cool gradients mean a human approved it.
+   Flat cream means she stopped and asked for help. */
+:root{
+  --field:#1B44CC;
+  --glow:#BB64AF;
+  --warm-a:#FED39D;
+  --warm-b:#FDACAA;
+  --warm-c:#AA91F4;
+  --cool-a:#D0E7FB;
+  --cool-b:#639CFE;
+  --navy:#1B3196;
+  --cream:#FFF6E9;
+}

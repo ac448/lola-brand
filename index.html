@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOLA · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+  :root{
+    --field-deep:#132E8F;
+    --ink:#181B22;
+  }
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .grotesk{font-family:'Space Grotesk',sans-serif;}
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:64px 24px;
+    background:var(--field);
+    background-image:radial-gradient(ellipse 85% 50% at 50% 112%, rgba(187,100,175,.6), transparent 62%);
+    position:relative;
+  }
+  .hero img{
+    width:min(420px,72vw);border-radius:28px;
+    box-shadow:0 40px 90px rgba(8,16,70,.45);
+    margin-bottom:44px;
+  }
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(52px,9vw,104px);letter-spacing:.02em;line-height:1;
+  }
+  .hero .sub{
+    margin-top:16px;font-size:clamp(15px,2vw,19px);color:rgba(255,255,255,.85);
+    max-width:44ch;line-height:1.55;
+  }
+  .hero .credit{
+    margin-top:26px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--warm-a);
+  }
+
+  /* ============ SHARED ============ */
+  section{padding:96px 24px;}
+  .wrap{max-width:920px;margin:0 auto;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(28px,4.5vw,42px);line-height:1.1;margin-bottom:20px;
+  }
+  .body-copy{font-size:16px;line-height:1.7;max-width:62ch;}
+  .body-copy + .body-copy{margin-top:18px;}
+
+  /* ============ PROBLEM (cream) ============ */
+  .s-problem{background:var(--cream);color:var(--ink);}
+  .s-problem .kicker{color:var(--navy);}
+  .s-problem .body-copy{color:#3a3e48;}
+
+
+  /* ============ MARK ANATOMY ============ */
+  .s-mark{background:var(--field-deep);}
+  .s-mark .kicker{color:var(--cool-a);}
+  .anatomy{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:24px;}
+  .anatomy img{width:100%;border-radius:24px;box-shadow:0 30px 70px rgba(5,10,50,.5);}
+  .an-list{display:flex;flex-direction:column;gap:28px;}
+  .an-item .n{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--warm-a);
+    letter-spacing:.1em;margin-bottom:6px;display:block;
+  }
+  .an-item h3{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;margin-bottom:6px;}
+  .an-item p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.78);}
+  @media (max-width:760px){.anatomy{grid-template-columns:1fr;}}
+
+  /* ============ BRAND SYSTEM (cream) ============ */
+  .s-brand{background:var(--cream);color:var(--ink);}
+  .s-brand .kicker{color:var(--navy);}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:40px 0 56px;}
+  .swatch{border-radius:16px;overflow:hidden;border:1px solid rgba(20,30,90,.08);}
+  .swatch .color{height:88px;}
+  .swatch .label{padding:10px 12px;background:#fff;}
+  .swatch .label .name{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12.5px;color:var(--ink);}
+  .swatch .label .hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8f9c;}
+  .type-spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+  .type-card{background:#fff;border-radius:18px;padding:28px;border:1px solid rgba(20,30,90,.08);}
+  .type-card .sample{font-size:34px;line-height:1.1;color:var(--navy);margin-bottom:14px;}
+  .type-card .role{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8f9c;margin-bottom:4px;}
+  .type-card .why{font-size:13px;color:#5a5f6b;line-height:1.6;}
+
+  /* ============ CHIPS ============ */
+  .s-chips{background:var(--field);background-image:radial-gradient(ellipse 80% 50% at 50% 118%, rgba(187,100,175,.5), transparent 62%);}
+  .s-chips .kicker{color:var(--warm-a);}
+  .chip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin:44px 0;}
+  .chip-cell .desc{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.78);margin-top:14px;max-width:30ch;}
+  .queue{
+    background:#fff;border-radius:18px;overflow:hidden;color:var(--ink);
+    box-shadow:0 28px 70px rgba(8,16,70,.4);
+  }
+
+  /* ============ ARCHITECTURE ============ */
+  .s-arch{background:var(--field-deep);}
+  .s-arch .kicker{color:var(--cool-a);}
+  .flow{margin-top:44px;}
+  .line{min-height:30px;}
+  .stage-body{padding-bottom:32px;}
+  .stage-copy{line-height:1.65;}
+  .stack-line{
+    margin-top:44px;font-family:'JetBrains Mono',monospace;font-size:12px;
+    letter-spacing:.1em;color:var(--cool-a);text-transform:uppercase;
+  }
+
+  /* ============ SAFETY ============ */
+  .s-safety{background:var(--cream);color:var(--ink);text-align:center;}
+  .safety-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1.5px solid var(--navy);border-radius:12px;padding:12px 22px;
+    font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.08em;color:var(--navy);
+    margin-bottom:28px;
+  }
+  .lock{width:14px;height:11px;border:2px solid var(--navy);border-radius:3px;position:relative;flex:none;margin-top:4px;}
+  .lock::before{content:"";position:absolute;width:8px;height:8px;border:2px solid var(--navy);border-bottom:none;border-radius:6px 6px 0 0;left:1px;top:-7px;}
+  .s-safety h2{color:var(--navy);}
+  .s-safety .body-copy{color:#3a3e48;margin:0 auto;}
+
+  /* ============ CREDITS ============ */
+  .s-credits{background:var(--field);text-align:center;
+    background-image:radial-gradient(ellipse 85% 50% at 50% 115%, rgba(187,100,175,.55), transparent 62%);
+  }
+  .s-credits h2{margin-bottom:36px;}
+  .credit-list{display:inline-flex;flex-direction:column;gap:14px;text-align:left;}
+  .credit-item{display:flex;gap:20px;align-items:baseline;font-size:14px;}
+  .credit-item .role{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--warm-a);width:190px;flex:none;
+  }
+  .credit-item .val{color:rgba(255,255,255,.9);}
+  .fin{margin-top:56px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.5);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <img src="assets/lola-hero.png" alt="LOLA logo: a warm gradient letter L holding a smiling chat-bubble face on a blue field">
+  <h1>LOLA</h1>
+  <p class="sub">An AI project manager for creative teams. She reads work requests and proposes the routing. A human makes every call.</p>
+  <p class="credit">A build and execution through Technovation</p>
+</header>
+
+<!-- PROBLEM -->
+<section class="s-problem">
+  <div class="wrap">
+    <p class="kicker">The problem</p>
+    <h2>Every creative team has a doorway problem.</h2>
+    <p class="body-copy">Requests arrive from everywhere. Forms, DMs, hallway asks, the dreaded "quick favor." Someone has to read each one, figure out what it actually is, find the right owner, and set a deadline before any creative work can start. On a global marketing team, that triage job quietly eats hours every week and the person doing it is usually the same person the work is waiting on.</p>
+    <p class="body-copy">LOLA takes the reading and matching off that person's plate. Every decision stays in their hands.</p>
+  </div>
+</section>
+
+<!-- MARK -->
+<section class="s-mark">
+  <div class="wrap">
+    <p class="kicker">The mark</p>
+    <h2>A letter with a face inside it.</h2>
+    <div class="anatomy">
+      <img src="assets/lola-mark-detail.png" alt="Close crop of the LOLA mark showing the L wrapped around the chat-bubble face">
+      <div class="an-list">
+        <div class="an-item">
+          <h3>One shape, two jobs</h3>
+          <p>The L is the lettermark and the frame at the same time. It carries the warm gradient and gives the face somewhere to sit. Nothing in the mark is decorative.</p>
+        </div>
+        <div class="an-item">
+          <h3>The face is the intelligence</h3>
+          <p>Shaped like a chat bubble because that is the honest form. You talk to her, she answers. The cool gradient belongs to output.</p>
+        </div>
+        <div class="an-item">
+          <h3>The bubble sits inside the letter</h3>
+          <p>Nothing floats. The structure contains the personality, which is exactly how the product is built. The mark says the same thing the architecture does.</p>
+        </div>
+        <div class="an-item">
+          <h3>The field is where she lives</h3>
+          <p>LOLA Blue is the environment. The glow rises from below, warm and ambient, signaling activity without alarm. The mark never sits on white by default.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND SYSTEM -->
+<section class="s-brand">
+  <div class="wrap">
+    <p class="kicker">The system</p>
+    <h2>Warm proposes. Cool confirms.</h2>
+    <p class="body-copy">The palette is functional. Warm tones belong to anything LOLA suggests. Cool tones appear only after a person approves. Cream marks the moments she steps back and asks for help. Color carries state across every surface, from the logo to a status chip in a task list.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="color" style="background:#1B44CC"></div><div class="label"><div class="name">LOLA Blue</div><div class="hex">#1B44CC</div></div></div>
+      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#FED39D,#FDACAA 55%,#AA91F4)"></div><div class="label"><div class="name">Proposal Warm</div><div class="hex">#FED39D → #AA91F4</div></div></div>
+      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#D0E7FB,#639CFE)"></div><div class="label"><div class="name">Routed Cool</div><div class="hex">#D0E7FB → #639CFE</div></div></div>
+      <div class="swatch"><div class="color" style="background:#1B3196"></div><div class="label"><div class="name">Feature Navy</div><div class="hex">#1B3196</div></div></div>
+      <div class="swatch"><div class="color" style="background:#FFF6E9"></div><div class="label"><div class="name">Human Cream</div><div class="hex">#FFF6E9</div></div></div>
+    </div>
+    <div class="type-spec">
+      <div class="type-card">
+        <div class="sample" style="font-family:'Space Grotesk',sans-serif;font-weight:700;">Space Grotesk</div>
+        <div class="role">Display and UI</div>
+        <p class="why">Squared counters echo the chat-bubble geometry of the mark without imitating it.</p>
+      </div>
+      <div class="type-card">
+        <div class="sample" style="font-family:'Inter',sans-serif;">Inter</div>
+        <div class="role">Body</div>
+        <p class="why">Disappears on purpose. The personality stays in the mark and the voice.</p>
+      </div>
+      <div class="type-card">
+        <div class="sample" style="font-family:'JetBrains Mono',monospace;font-size:26px;">JetBrains Mono</div>
+        <div class="role">LOLA's own output</div>
+        <p class="why">When the system speaks verbatim, it speaks in mono. One rule that keeps her honest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIPS -->
+<section class="s-chips">
+  <div class="wrap">
+    <p class="kicker">Status chips</p>
+    <h2>Read the queue at a glance.</h2>
+    <div class="chip-grid">
+      <div class="chip-cell">
+        <span class="chip chip-proposal"><span class="dot"></span>Proposed</span>
+        <p class="desc">LOLA has routed this and is waiting on approval. The pulse means a decision is waiting on review.</p>
+      </div>
+      <div class="chip-cell">
+        <span class="chip chip-routed"><span class="dot"></span>Routed</span>
+        <p class="desc">Approved and assigned. Cool tones are earned. They only appear after a human yes.</p>
+      </div>
+      <div class="chip-cell">
+        <span class="chip chip-human"><span class="dot"></span>Needs human</span>
+        <p class="desc">No matching rule, so no guessing. Flat cream, no gradient. The system steps back visually.</p>
+      </div>
+    </div>
+    <div class="queue">
+      <div class="queue-head"><span class="avatar"></span> LOLA · Marketing Request Queue</div>
+      <div class="task">
+        <span class="task-title">Summit one-pager, sponsor version</span>
+        <span class="task-meta">form 04 → rule 2.1</span>
+        <span class="chip chip-proposal sm"><span class="dot"></span>Proposed</span>
+      </div>
+      <div class="task">
+        <span class="task-title">Chapter social kit, Q3 refresh</span>
+        <span class="task-meta">approved 9:12a</span>
+        <span class="chip chip-routed sm"><span class="dot"></span>Routed</span>
+      </div>
+      <div class="task">
+        <span class="task-title">"Quick logo tweak" (no brief attached)</span>
+        <span class="task-meta">no matching rule</span>
+        <span class="chip chip-human sm"><span class="dot"></span>Needs human</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="s-arch">
+  <div class="wrap">
+    <p class="kicker">Architecture</p>
+    <h2>Five steps. One human yes.</h2>
+    <div class="flow">
+      <div class="stage">
+        <div class="rail"><div class="node ghost"></div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">A request comes in</p>
+          <p class="stage-copy">A structured work request form, inside the project management tool the team already uses. The intake lives where the work lives.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="rail"><div class="node warm"></div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">LOLA reads and reasons</p>
+          <p class="stage-copy">The form hits a webhook. LOLA sends the contents to Claude through the Anthropic API alongside the team's routing rulebook, a plain-language document the team owns and edits.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="rail"><div class="node warm"></div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">She proposes and shows her work</p>
+          <p class="stage-copy">Suggested owner, project, priority, and the exact rule that produced the decision: <code>matched: rule 2.1 (event collateral → design queue)</code>. Every proposal is auditable because every proposal cites its source.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="rail"><div class="node cream" style="font-size:13px">?</div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">No matching rule? She stops.</p>
+          <p class="stage-copy">Requests that fall outside the rulebook get flagged to the triage owner with a note about what was missing. Guessing is not in her permission set.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="rail"><div class="node cool"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">A human approves. Work moves.</p>
+          <p class="stage-copy">The triage owner accepts, edits, or rejects in one click. On approval, the task is assigned and routed.</p>
+        </div>
+      </div>
+    </div>
+    <p class="stack-line">Anthropic API · Node.js · Vercel · Asana (first integration)</p>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="s-safety">
+  <div class="wrap">
+    <span class="safety-badge"><span class="lock"></span>PROPOSE-ONLY</span>
+    <h2>Safety mode is the design decision.</h2>
+    <p class="body-copy">LOLA shipped without the ability to assign work on her own, on purpose. Autonomy is something a team can grant later, rule by rule, once trust is earned. The most advanced thing about this agent is the restraint built into it.</p>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section class="s-credits">
+  <div class="wrap">
+    <h2>Credits</h2>
+    <div class="credit-list">
+      <div class="credit-item"><span class="role">Design, build, deploy</span><span class="val">AC Black, Senior Creative Technologist</span></div>
+      <div class="credit-item"><span class="role">Built through</span><span class="val">Technovation, global tech education nonprofit</span></div>
+      <div class="credit-item"><span class="role">Intelligence</span><span class="val">Claude, via the Anthropic API</span></div>
+      <div class="credit-item"><span class="role">Status</span><span class="val">In production, propose-only mode</span></div>
+    </div>
+    <p class="fin">LOLA V1 · BUILT AND EXECUTED THROUGH TECHNOVATION · 2026</p>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <nav class="site-nav" aria-label="Site pages">
+    <a href="index.html">Case study</a><span class="sep">·</span><a href="specs/chips.html">Status chips</a><span class="sep">·</span><a href="specs/architecture.html">Architecture</a>
+  </nav>
+</footer>
+
+</body>
+</html>

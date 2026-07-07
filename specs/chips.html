@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOLA · Status Chip System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  :root{
+    --field-deep:#16379F;
+  }
+  body{
+    background-image:radial-gradient(ellipse 90% 55% at 50% 115%, rgba(187,100,175,.55), transparent 65%);
+    min-height:100vh;
+    padding:64px 24px 96px;
+  }
+  .sheet .lede{max-width:56ch;}
+  .sheet h2{margin-bottom:24px;}
+
+  /* ---- chips ---- */
+  .chip-row{display:flex;flex-wrap:wrap;gap:28px;}
+  .chip-card{flex:1 1 220px;}
+  .chip{margin-bottom:14px;}
+  .chip.sm{margin:0;}
+  .chip-name{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cool-a);margin-bottom:6px;}
+  .chip-desc{font-size:13px;line-height:1.55;color:rgba(255,255,255,.75);max-width:30ch;}
+
+  /* ---- in context ---- */
+  .task-list{
+    background:#fff;border-radius:16px;overflow:hidden;
+    color:#1a1d24;
+    box-shadow:0 24px 60px rgba(10,20,80,.35);
+  }
+
+  /* ---- badge ---- */
+  .badge-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .safety-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1.5px solid var(--warm-a);border-radius:12px;
+    padding:10px 18px;
+    font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;
+    color:var(--warm-a);
+  }
+  .lock{
+    width:14px;height:11px;border:2px solid var(--warm-a);border-radius:3px;position:relative;flex:none;margin-top:4px;
+  }
+  .lock::before{
+    content:"";position:absolute;width:8px;height:8px;
+    border:2px solid var(--warm-a);border-bottom:none;border-radius:6px 6px 0 0;
+    left:1px;top:-7px;
+  }
+  .badge-note{font-size:13px;line-height:1.55;color:rgba(255,255,255,.75);max-width:44ch;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="eyebrow">LOLA · Brand System · Component Spec 01</p>
+  <h1>Status chips</h1>
+  <p class="lede">Color carries state. <strong>Warm means LOLA proposed it.</strong> <strong>Cool means it's confirmed and routed.</strong> Cream means a human needs to look. Anyone scanning a board can read the system's confidence level without opening a single task.</p>
+
+  <section>
+    <h2>The three states</h2>
+    <div class="chip-row">
+      <div class="chip-card">
+        <span class="chip chip-proposal"><span class="dot"></span>Proposed</span>
+        <p class="chip-name">state/proposal · warm gradient</p>
+        <p class="chip-desc">LOLA has routed this and is waiting on approval. The pulsing dot signals pending, never urgency.</p>
+      </div>
+      <div class="chip-card">
+        <span class="chip chip-routed"><span class="dot"></span>Routed</span>
+        <p class="chip-name">state/routed · cool gradient</p>
+        <p class="chip-desc">Approved and assigned. Cool tones are earned, they only appear after a human says yes.</p>
+      </div>
+      <div class="chip-card">
+        <span class="chip chip-human"><span class="dot"></span>Needs human</span>
+        <p class="chip-name">state/human · navy on cream</p>
+        <p class="chip-desc">LOLA can't cite a rule for this one, so she won't guess. Flat color, no gradient. The system steps back visually.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>In context · request queue</h2>
+    <div class="task-list">
+      <div class="task-head"><span class="avatar"></span> LOLA · Marketing Request Queue</div>
+      <div class="task">
+        <span class="task-title">Summit one-pager, sponsor version</span>
+        <span class="task-meta">form 04 → rule 2.1</span>
+        <span class="chip chip-proposal sm"><span class="dot"></span>Proposed</span>
+      </div>
+      <div class="task">
+        <span class="task-title">Chapter social kit, Q3 refresh</span>
+        <span class="task-meta">approved 9:12a</span>
+        <span class="chip chip-routed sm"><span class="dot"></span>Routed</span>
+      </div>
+      <div class="task">
+        <span class="task-title">"Quick logo tweak" (no brief attached)</span>
+        <span class="task-meta">no matching rule</span>
+        <span class="chip chip-human sm"><span class="dot"></span>Needs human</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Safety mode badge</h2>
+    <div class="badge-wrap">
+      <span class="safety-badge"><span class="lock"></span>PROPOSE-ONLY</span>
+      <p class="badge-note">Worn like a certification, not a disclaimer. Appears on the case study cover, the queue header, and anywhere LOLA is introduced to a new team.</p>
+    </div>
+  </section>
+
+  <p class="footer">LOLA BRAND SYSTEM V1 · VALUES SAMPLED FROM MASTER ARTWORK · TYPE: SPACE GROTESK / INTER / JETBRAINS MONO</p>
+
+  <nav class="site-nav" aria-label="Site pages">
+    <a href="../index.html">Case study</a><span class="sep">·</span><a href="chips.html">Status chips</a><span class="sep">·</span><a href="architecture.html">Architecture</a>
+  </nav>
+</div>
+</body>
+</html>

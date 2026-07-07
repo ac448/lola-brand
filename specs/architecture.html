@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOLA · Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  body{
+    background-image:radial-gradient(ellipse 90% 55% at 50% 115%, rgba(187,100,175,.55), transparent 65%);
+    min-height:100vh;
+    padding:64px 24px 96px;
+  }
+  .sheet .lede{max-width:58ch;}
+  .sheet h2{margin-bottom:28px;}
+  .sheet .footer{line-height:1.8;}
+
+  /* ---- flow ---- */
+  .flow{display:flex;flex-direction:column;gap:0;}
+  .line{min-height:34px;}
+  .stage-body{padding-bottom:34px;}
+  .stage-copy{line-height:1.6;}
+  .fork{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.05em;
+    color:var(--warm-a);margin-top:10px;
+  }
+
+  /* ---- stack ---- */
+  .stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;}
+  .stack-card{
+    border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px;
+  }
+  .stack-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cool-a);margin-bottom:8px;}
+  .stack-name{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:16px;margin-bottom:6px;}
+  .stack-note{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.7);}
+
+  /* ---- principles ---- */
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+  .principle{
+    background:rgba(10,20,90,.35);border-radius:14px;padding:20px;
+  }
+  .principle h3{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px;margin-bottom:8px;color:var(--warm-a);}
+  .principle p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.78);}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="eyebrow">LOLA · Product Overview · Spec 02</p>
+  <h1>How LOLA works</h1>
+  <p class="lede">LOLA is an AI routing agent for creative and marketing teams. She reads incoming work requests, matches them against <strong>your team's own routing rules</strong>, and proposes an owner, a project, and a priority. A person approves every decision. <strong>She never assigns work on her own.</strong></p>
+
+  <section>
+    <h2>Request lifecycle</h2>
+    <div class="flow">
+
+      <div class="stage">
+        <div class="rail"><div class="node ghost">1</div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">A request comes in</p>
+          <p class="stage-copy">Anyone on the team submits a structured work request form inside the project management tool. No new software to learn, the intake lives where the work already lives.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="rail"><div class="node warm">2</div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">LOLA reads and reasons</p>
+          <p class="stage-copy">The request hits a webhook. LOLA sends the form contents to Claude via the Anthropic API alongside the team's routing rulebook, a plain-language document the team owns and can edit. She identifies the request type, the right owner, and the deadline risk.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="rail"><div class="node warm">3</div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">She proposes, and shows her work</p>
+          <p class="stage-copy">LOLA posts a proposal as a comment: suggested owner, project, priority, and the specific rule she used to get there, e.g. <code>matched: rule 2.1 (event collateral → design queue)</code>. Every proposal is auditable because every proposal cites its source.</p>
+          <p class="fork">state → PROPOSED (warm chip)</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="rail"><div class="node cream" style="font-size:13px">?</div><div class="line"></div></div>
+        <div class="stage-body">
+          <p class="stage-title">No matching rule? She stops.</p>
+          <p class="stage-copy">If a request doesn't map cleanly to the rulebook, LOLA doesn't guess. She flags it for the triage owner with a note about what was missing. Ambiguity is escalated, never absorbed.</p>
+          <p class="fork" style="color:var(--cream)">state → NEEDS HUMAN (cream chip)</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="rail"><div class="node cool">4</div></div>
+        <div class="stage-body">
+          <p class="stage-title">A human approves. Work moves.</p>
+          <p class="stage-copy">The triage owner accepts, edits, or rejects the proposal in one click. On approval, the task is assigned and routed. Cool tones in the interface are earned: they only ever appear downstream of a human yes.</p>
+          <p class="fork" style="color:var(--cool-a)">state → ROUTED (cool chip)</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>The stack</h2>
+    <div class="stack">
+      <div class="stack-card">
+        <p class="stack-label">Intelligence</p>
+        <p class="stack-name">Anthropic API</p>
+        <p class="stack-note">Claude handles classification and routing logic against the team rulebook.</p>
+      </div>
+      <div class="stack-card">
+        <p class="stack-label">Runtime</p>
+        <p class="stack-name">Node.js</p>
+        <p class="stack-note">Lightweight service receiving webhooks and orchestrating the round trip.</p>
+      </div>
+      <div class="stack-card">
+        <p class="stack-label">Hosting</p>
+        <p class="stack-name">Vercel</p>
+        <p class="stack-note">Serverless deploy. No infrastructure for a creative team to babysit.</p>
+      </div>
+      <div class="stack-card">
+        <p class="stack-label">Workspace</p>
+        <p class="stack-name">Asana, today</p>
+        <p class="stack-note">First integration. The routing engine is tool-agnostic by design.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Design principles</h2>
+    <div class="principles">
+      <div class="principle">
+        <h3>Propose-only by default</h3>
+        <p>LOLA ships in safety mode. Autonomy is something a team can grant later, rule by rule, once trust is earned. It is never the starting point.</p>
+      </div>
+      <div class="principle">
+        <h3>The rulebook belongs to the team</h3>
+        <p>Routing logic lives in a plain-language document the team edits, not in code. Changing how work flows is a writing task, not a ticket to engineering.</p>
+      </div>
+      <div class="principle">
+        <h3>Every decision cites a rule</h3>
+        <p>No black-box assignments. If LOLA can't point to the rule that produced a proposal, the proposal doesn't get made.</p>
+      </div>
+      <div class="principle">
+        <h3>Color carries state</h3>
+        <p>Warm means proposed. Cool means approved and routed. Cream means a human is needed. The interface tells the truth at a glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer">LOLA V1 · BUILT AND PROVEN IN PRODUCTION ON A GLOBAL NONPROFIT'S MARKETING TEAM · ANTHROPIC API / NODE.JS / VERCEL</p>
+
+  <nav class="site-nav" aria-label="Site pages">
+    <a href="../index.html">Case study</a><span class="sep">·</span><a href="chips.html">Status chips</a><span class="sep">·</span><a href="architecture.html">Architecture</a>
+  </nav>
+</div>
+</body>
+</html>

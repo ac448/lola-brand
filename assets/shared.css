@@ -12,7 +12,7 @@ body{font-family:'Inter',sans-serif;background:var(--field);color:#fff;}
 .chip .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--navy);}
 .chip-routed{background:linear-gradient(135deg,var(--warm-a),var(--warm-b) 55%,var(--warm-c));color:var(--navy);}
 .chip-routed .dot{animation:pulse 2.2s ease-in-out infinite;}
-.chip-confirmed{background:linear-gradient(135deg,var(--cool-a),var(--cool-b));color:var(--navy);}
+.chip-reviewed{background:linear-gradient(135deg,var(--cool-a),var(--cool-b));color:var(--navy);}
 .chip-human{background:var(--cream);color:var(--navy);}
 .chip.sm{padding:5px 12px;font-size:12px;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}

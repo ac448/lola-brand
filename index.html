@@ -151,7 +151,7 @@
 <header class="hero">
   <img src="assets/lola-hero.png" alt="LOLA logo: a warm gradient letter L holding a smiling chat-bubble face on a blue field">
   <h1>LOLA</h1>
-  <p class="sub">An AI project manager for creative teams. She reads work requests and proposes the routing. A human makes every call.</p>
+  <p class="sub">An AI project manager for creative teams. She reads work requests and routes them on her own. Any call can be undone in one click.</p>
   <p class="credit">A build and execution through Technovation</p>
 </header>
 
@@ -161,7 +161,7 @@
     <p class="kicker">The problem</p>
     <h2>Every creative team has a doorway problem.</h2>
     <p class="body-copy">Requests arrive from everywhere. Forms, DMs, hallway asks, the dreaded "quick favor." Someone has to read each one, figure out what it actually is, find the right owner, and set a deadline before any creative work can start. On a global marketing team, that triage job quietly eats hours every week and the person doing it is usually the same person the work is waiting on.</p>
-    <p class="body-copy">LOLA takes the reading and matching off that person's plate. Every decision stays in their hands.</p>
+    <p class="body-copy">LOLA takes the reading and matching off that person's plate. Every call she makes can be undone.</p>
   </div>
 </section>
 
@@ -198,12 +198,12 @@
 <section class="s-brand">
   <div class="wrap">
     <p class="kicker">The system</p>
-    <h2>Warm proposes. Cool confirms.</h2>
-    <p class="body-copy">The palette is functional. Warm tones belong to anything LOLA suggests. Cool tones appear only after a person approves. Cream marks the moments she steps back and asks for help. Color carries state across every surface, from the logo to a status chip in a task list.</p>
+    <h2>Warm acts. Cool confirms.</h2>
+    <p class="body-copy">The palette is functional. Warm tones belong to anything LOLA does on her own. Cool tones appear after a person confirms her call. Cream marks the moments she steps back and asks for help. Color carries state across every surface, from the logo to a status chip in a task list.</p>
     <div class="swatches">
       <div class="swatch"><div class="color" style="background:#1B44CC"></div><div class="label"><div class="name">LOLA Blue</div><div class="hex">#1B44CC</div></div></div>
-      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#FED39D,#FDACAA 55%,#AA91F4)"></div><div class="label"><div class="name">Proposal Warm</div><div class="hex">#FED39D → #AA91F4</div></div></div>
-      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#D0E7FB,#639CFE)"></div><div class="label"><div class="name">Routed Cool</div><div class="hex">#D0E7FB → #639CFE</div></div></div>
+      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#FED39D,#FDACAA 55%,#AA91F4)"></div><div class="label"><div class="name">Routed Warm</div><div class="hex">#FED39D → #AA91F4</div></div></div>
+      <div class="swatch"><div class="color" style="background:linear-gradient(135deg,#D0E7FB,#639CFE)"></div><div class="label"><div class="name">Confirmed Cool</div><div class="hex">#D0E7FB → #639CFE</div></div></div>
       <div class="swatch"><div class="color" style="background:#1B3196"></div><div class="label"><div class="name">Feature Navy</div><div class="hex">#1B3196</div></div></div>
       <div class="swatch"><div class="color" style="background:#FFF6E9"></div><div class="label"><div class="name">Human Cream</div><div class="hex">#FFF6E9</div></div></div>
     </div>
@@ -234,12 +234,12 @@
     <h2>Read the queue at a glance.</h2>
     <div class="chip-grid">
       <div class="chip-cell">
-        <span class="chip chip-proposal"><span class="dot"></span>Proposed</span>
-        <p class="desc">LOLA has routed this and is waiting on approval. The pulse means a decision is waiting on review.</p>
+        <span class="chip chip-proposal"><span class="dot"></span>Routed</span>
+        <p class="desc">LOLA matched a rule and routed this on her own. The pulse means the undo window is open.</p>
       </div>
       <div class="chip-cell">
-        <span class="chip chip-routed"><span class="dot"></span>Routed</span>
-        <p class="desc">Approved and assigned. Cool tones are earned. They only appear after a human yes.</p>
+        <span class="chip chip-routed"><span class="dot"></span>Confirmed</span>
+        <p class="desc">A person reviewed the call and kept it. Cool tones appear once a human has looked.</p>
       </div>
       <div class="chip-cell">
         <span class="chip chip-human"><span class="dot"></span>Needs human</span>
@@ -251,12 +251,12 @@
       <div class="task">
         <span class="task-title">Summit one-pager, sponsor version</span>
         <span class="task-meta">form 04 → rule 2.1</span>
-        <span class="chip chip-proposal sm"><span class="dot"></span>Proposed</span>
+        <span class="chip chip-proposal sm"><span class="dot"></span>Routed</span>
       </div>
       <div class="task">
         <span class="task-title">Chapter social kit, Q3 refresh</span>
-        <span class="task-meta">approved 9:12a</span>
-        <span class="chip chip-routed sm"><span class="dot"></span>Routed</span>
+        <span class="task-meta">confirmed 9:12a</span>
+        <span class="chip chip-routed sm"><span class="dot"></span>Confirmed</span>
       </div>
       <div class="task">
         <span class="task-title">"Quick logo tweak" (no brief attached)</span>
@@ -271,7 +271,7 @@
 <section class="s-arch">
   <div class="wrap">
     <p class="kicker">Architecture</p>
-    <h2>Five steps. One human yes.</h2>
+    <h2>Five steps. No waiting.</h2>
     <div class="flow">
       <div class="stage">
         <div class="rail"><div class="node ghost"></div><div class="line"></div></div>
@@ -290,8 +290,8 @@
       <div class="stage">
         <div class="rail"><div class="node warm"></div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">She proposes and shows her work</p>
-          <p class="stage-copy">Suggested owner, project, priority, and the exact rule that produced the decision: <code>matched: rule 2.1 (event collateral → design queue)</code>. Every proposal is auditable because every proposal cites its source.</p>
+          <p class="stage-title">She routes and shows her work</p>
+          <p class="stage-copy">Owner, project, priority, and the exact rule that produced the decision: <code>matched: rule 2.1 (event collateral → design queue)</code>. Every call is auditable because every call cites its source.</p>
         </div>
       </div>
       <div class="stage">
@@ -304,8 +304,8 @@
       <div class="stage">
         <div class="rail"><div class="node cool"></div></div>
         <div class="stage-body">
-          <p class="stage-title">A human approves. Work moves.</p>
-          <p class="stage-copy">The triage owner accepts, edits, or rejects in one click. On approval, the task is assigned and routed.</p>
+          <p class="stage-title">Work moves. A human can undo it.</p>
+          <p class="stage-copy">The task is assigned the moment she routes it. The triage owner can reverse or edit any call in one click. A reviewed call turns cool.</p>
         </div>
       </div>
     </div>
@@ -316,9 +316,9 @@
 <!-- SAFETY -->
 <section class="s-safety">
   <div class="wrap">
-    <span class="safety-badge"><span class="lock"></span>PROPOSE-ONLY</span>
-    <h2>Safety mode is the design decision.</h2>
-    <p class="body-copy">LOLA shipped without the ability to assign work on her own, on purpose. Autonomy is something a team can grant later, rule by rule, once trust is earned. The most advanced thing about this agent is the restraint built into it.</p>
+    <span class="safety-badge"><span class="lock"></span>REVERSIBLE</span>
+    <h2>Reversibility is the design decision.</h2>
+    <p class="body-copy">LOLA routes work the moment a rule matches. Nothing she does is final. Every call carries a one-click undo and a citation back to the rule that produced it. Autonomy is safe when the team can take any decision back.</p>
   </div>
 </section>
 
@@ -330,7 +330,7 @@
       <div class="credit-item"><span class="role">Design, build, deploy</span><span class="val">AC Black, Senior Creative Technologist</span></div>
       <div class="credit-item"><span class="role">Built through</span><span class="val">Technovation, global tech education nonprofit</span></div>
       <div class="credit-item"><span class="role">Intelligence</span><span class="val">Claude, via the Anthropic API</span></div>
-      <div class="credit-item"><span class="role">Status</span><span class="val">In production, propose-only mode</span></div>
+      <div class="credit-item"><span class="role">Status</span><span class="val">In production, autonomous with one-click undo</span></div>
     </div>
     <p class="fin">LOLA V1 · BUILT AND EXECUTED THROUGH TECHNOVATION · 2026</p>
   </div>

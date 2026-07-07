@@ -51,7 +51,7 @@
 <div class="sheet">
   <p class="eyebrow">LOLA · Product Overview · Spec 02</p>
   <h1>How LOLA works</h1>
-  <p class="lede">LOLA is an AI routing agent for creative and marketing teams. She reads incoming work requests, matches them against <strong>your team's own routing rules</strong>, and proposes an owner, a project, and a priority. A person approves every decision. <strong>She never assigns work on her own.</strong></p>
+  <p class="lede">LOLA is an AI routing agent for creative and marketing teams. She reads each incoming request and matches it against <strong>your team's own routing rules</strong>. When a rule fits, she assigns the work herself. <strong>Every call she makes can be undone in one click.</strong></p>
 
   <section>
     <h2>Request lifecycle</h2>
@@ -76,9 +76,9 @@
       <div class="stage">
         <div class="rail"><div class="node warm">3</div><div class="line"></div></div>
         <div class="stage-body">
-          <p class="stage-title">She proposes, and shows her work</p>
-          <p class="stage-copy">LOLA posts a proposal as a comment: suggested owner, project, priority, and the specific rule she used to get there, e.g. <code>matched: rule 2.1 (event collateral → design queue)</code>. Every proposal is auditable because every proposal cites its source.</p>
-          <p class="fork">state → PROPOSED (warm chip)</p>
+          <p class="stage-title">She routes, and shows her work</p>
+          <p class="stage-copy">LOLA assigns the task and posts her reasoning as a comment: owner, project, priority, and the specific rule she used to get there, e.g. <code>matched: rule 2.1 (event collateral → design queue)</code>. Every call is auditable because every call cites its source.</p>
+          <p class="fork">state → ROUTED (warm chip)</p>
         </div>
       </div>
 
@@ -94,9 +94,9 @@
       <div class="stage">
         <div class="rail"><div class="node cool">4</div></div>
         <div class="stage-body">
-          <p class="stage-title">A human approves. Work moves.</p>
-          <p class="stage-copy">The triage owner accepts, edits, or rejects the proposal in one click. On approval, the task is assigned and routed. Cool tones in the interface are earned: they only ever appear downstream of a human yes.</p>
-          <p class="fork" style="color:var(--cool-a)">state → ROUTED (cool chip)</p>
+          <p class="stage-title">A human can undo any call.</p>
+          <p class="stage-copy">Work moves the moment she routes it. The triage owner can reverse or edit any call in one click. Once a person reviews the call and keeps it, the chip turns cool.</p>
+          <p class="fork" style="color:var(--cool-a)">state → CONFIRMED (cool chip)</p>
         </div>
       </div>
 
@@ -133,8 +133,8 @@
     <h2>Design principles</h2>
     <div class="principles">
       <div class="principle">
-        <h3>Propose-only by default</h3>
-        <p>LOLA ships in safety mode. Autonomy is something a team can grant later, rule by rule, once trust is earned.</p>
+        <h3>Autonomous with an undo</h3>
+        <p>LOLA routes without waiting for permission. Nothing she does is final. The triage owner can take back any call in one click.</p>
       </div>
       <div class="principle">
         <h3>The rulebook belongs to the team</h3>
@@ -142,11 +142,11 @@
       </div>
       <div class="principle">
         <h3>Every decision cites a rule</h3>
-        <p>No black-box assignments. If LOLA can't point to the rule that produced a proposal, the proposal doesn't get made.</p>
+        <p>No black-box assignments. If LOLA can't point to the rule behind a call, she doesn't make the call.</p>
       </div>
       <div class="principle">
         <h3>Color carries state</h3>
-        <p>Warm means proposed. Cool means approved and routed. Cream means a human is needed. The interface tells the truth at a glance.</p>
+        <p>Warm means LOLA acted. Cool means a person confirmed it. Cream means a human is needed. The interface tells the truth at a glance.</p>
       </div>
     </div>
   </section>

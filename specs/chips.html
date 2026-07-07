@@ -59,20 +59,20 @@
 <div class="sheet">
   <p class="eyebrow">LOLA · Brand System · Component Spec 01</p>
   <h1>Status chips</h1>
-  <p class="lede">Color carries state. <strong>Warm means LOLA proposed it.</strong> <strong>Cool means it's confirmed and routed.</strong> Cream means a human needs to look. Anyone scanning a board can read the system's confidence level without opening a single task.</p>
+  <p class="lede">Color carries state. <strong>Warm means LOLA routed it herself.</strong> <strong>Cool means a person confirmed it.</strong> Cream means a human needs to look. Anyone scanning a board can read the state of the queue without opening a single task.</p>
 
   <section>
     <h2>The three states</h2>
     <div class="chip-row">
       <div class="chip-card">
-        <span class="chip chip-proposal"><span class="dot"></span>Proposed</span>
-        <p class="chip-name">state/proposal · warm gradient</p>
-        <p class="chip-desc">LOLA has routed this and is waiting on approval. The pulsing dot means a decision is waiting on review.</p>
+        <span class="chip chip-proposal"><span class="dot"></span>Routed</span>
+        <p class="chip-name">state/routed · warm gradient</p>
+        <p class="chip-desc">LOLA matched a rule and routed this on her own. The pulsing dot means the undo window is open.</p>
       </div>
       <div class="chip-card">
-        <span class="chip chip-routed"><span class="dot"></span>Routed</span>
-        <p class="chip-name">state/routed · cool gradient</p>
-        <p class="chip-desc">Approved and assigned. Cool tones are earned, they only appear after a human says yes.</p>
+        <span class="chip chip-routed"><span class="dot"></span>Confirmed</span>
+        <p class="chip-name">state/confirmed · cool gradient</p>
+        <p class="chip-desc">A person reviewed the call and kept it. Cool tones appear once a human has looked.</p>
       </div>
       <div class="chip-card">
         <span class="chip chip-human"><span class="dot"></span>Needs human</span>
@@ -89,12 +89,12 @@
       <div class="task">
         <span class="task-title">Summit one-pager, sponsor version</span>
         <span class="task-meta">form 04 → rule 2.1</span>
-        <span class="chip chip-proposal sm"><span class="dot"></span>Proposed</span>
+        <span class="chip chip-proposal sm"><span class="dot"></span>Routed</span>
       </div>
       <div class="task">
         <span class="task-title">Chapter social kit, Q3 refresh</span>
-        <span class="task-meta">approved 9:12a</span>
-        <span class="chip chip-routed sm"><span class="dot"></span>Routed</span>
+        <span class="task-meta">confirmed 9:12a</span>
+        <span class="chip chip-routed sm"><span class="dot"></span>Confirmed</span>
       </div>
       <div class="task">
         <span class="task-title">"Quick logo tweak" (no brief attached)</span>
@@ -105,9 +105,9 @@
   </section>
 
   <section>
-    <h2>Safety mode badge</h2>
+    <h2>Reversibility badge</h2>
     <div class="badge-wrap">
-      <span class="safety-badge"><span class="lock"></span>PROPOSE-ONLY</span>
+      <span class="safety-badge"><span class="lock"></span>REVERSIBLE</span>
       <p class="badge-note">Worn like a certification. Appears on the case study cover, the queue header, and anywhere LOLA is introduced to a new team.</p>
     </div>
   </section>
